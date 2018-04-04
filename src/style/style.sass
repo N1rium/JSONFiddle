@@ -1,0 +1,123 @@
+*
+  box-sizing: border-box
+  
+html
+  height: 100%
+  width: 100%
+  padding: 0
+  margin: 0
+  
+body
+  font-size: 11px
+  line-height: 17px
+  font-family: $font-family-1
+  word-spacing: -5px
+  height: 100%
+  width: 100%
+  margin: 0
+
+.app-container
+  padding: 0em 2em
+
+header
+  font-size: 1.5em
+  height: $header-height
+
+.toolbar
+  height: $toolbar-height
+
+footer
+  height: $footer-height
+
+main > textarea, main > div:last-child 
+  height: calc(100vh - #{$header-height + $footer-height + $toolbar-height})
+  padding: 1em
+  border: 1px solid
+  width: 40%
+
+main > .separator
+  width: 10px
+
+main > .output 
+  overflow-y: auto
+
+textarea
+  resize: horizontal
+  font-family: $font-family-1
+  outline: none
+
+ul, ol
+  list-style-type: none
+  margin: 0
+  padding: 0 0 0 20px
+
+li:not(:last-child)::after 
+  content: ","
+
+.key 
+  color: #204a87
+  &:after
+    content: '\":'
+  &:before
+    content: '\"'
+
+.collapsed > ul, .collapsed > ol 
+  display: none !important
+
+.boolean 
+  color: $boolean
+
+.string 
+  color: $string
+
+.null 
+  color: $null
+
+.string::after, .string::before 
+  content: '\"'
+
+.number 
+  color: $number
+
+.toggle 
+  cursor: pointer
+  &:before
+    border-radius: 2px
+    border-color: #AAA
+    border-style: solid
+    border-width: .1em
+    color: #AAA
+    content: '-'
+    display: inline-block
+    line-height: 7px
+    margin: 0 2px
+    overflow: hidden
+    padding: 0
+
+.collapsed > .toggle::before 
+  content: "+"
+
+.array > .toggle, .array > .toggle-end 
+  color: $array
+
+.object > .toggle, .object > .toggle-end 
+  color: $object
+
+.array > .toggle:before 
+  color: $array
+  border-color: $array
+
+.toggle:hover + ul 
+    opacity: 0.2
+
+.toggle:hover, .toggle:hover ~ .toggle-end 
+  font-weight: bold
+
+.object.collapsed .toggle::after 
+  content: "..."
+
+.text-btn
+  text-decoration: underline
+  cursor: pointer
+  &:hover
+    font-weight: bold

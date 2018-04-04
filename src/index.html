@@ -1,0 +1,37 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>JSON Fiddle</title>
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimal-scale=1.0, minimal-ui">
+</head>
+
+<body ng-app="App" ng-controller="RootController">
+  $bundles
+  <div class="app-container flex flex-column justify-center">
+    <header class="flex items-center">
+      <div>JSONFiddle</div>
+    </header>
+    <div class="toolbar flex items-center">
+        <div class="text-btn" ng-click="formatJson()">Format JSON</div>
+        <div>|</div>
+    </div>
+    <main class="flex justify-between items-center">
+      <textarea id="textarea" json-text ng-model="json" spellcheck="false"></textarea>
+      <div class="separator"></div>
+      <div class="flex-auto output">
+        <property value="json"></property>
+      </div>
+    </main>
+    <footer class="flex items-center">
+
+    </footer>
+  </div>
+</body>
+
+</html>
