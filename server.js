@@ -7,7 +7,7 @@ const dist = path.resolve('./build');
 app.use(express.static('build'))
 
 app.get('*',function (req, res) {
-  res.sendFile(path.join(__dirname, '/build/index.html'));
+  res.sendFile(path.join(dist, 'index.html'));
 });
 
 console.log(path.join(dist, "index.html"));
