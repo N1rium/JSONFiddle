@@ -22,17 +22,16 @@ export default function property() {
               <span class="boolean" ng-if="isBoolean()">{{value}}</span>
               <span class="null" ng-if="isNull()">null</span>
               <span class="object" ng-class="{'collapsed': collapsed}" ng-if="isObject()">
-                <span class="toggle" ng-click="collapsed = !collapsed">{</span>
+                <span class="toggle" ng-click="collapsed = !collapsed"></span>
                 <ul>
                   <li ng-repeat="(k,v) in value">
                     <property key="k" value="v"></property>
                   </li>
                 </ul>
-                <span class="toggle-end">}</span>
+                <span class="toggle-end"></span>
               </span>
               <span class="array" ng-class="{'collapsed': collapsed}" ng-if="isArray()">
                 <span class="toggle" ng-click="collapsed = !collapsed">
-                [
                 <span ng-if="collapsed">{{value.length}}</span>
                 </span>
                 <ul>
@@ -40,7 +39,7 @@ export default function property() {
                     <property value="v"></property>
                   </li>
                 </ul>
-                <span class="toggle-end">]</span>
+                <span class="toggle-end"></span>
               </span>
             </span>
           `,

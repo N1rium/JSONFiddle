@@ -108,6 +108,16 @@ li:not(:last-child)::after
   color: $array
   border-color: $array
 
+.array > .toggle:after
+  content: "["
+.array > .toggle-end:after
+  content: "]"
+
+.object > .toggle:after
+  content: "{"
+.object > .toggle-end:after
+  content: "}"
+
 .toggle:hover + ul 
     opacity: 0.2
 
