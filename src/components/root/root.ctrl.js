@@ -1,6 +1,9 @@
 export default function rootCtrl($scope, $rootScope) {
   'ngInject';
 
+  const themes = ['json-parser-fr']
+  $scope.theme = themes[0];
+
   $scope.json = {
     "a": "b"
   };
