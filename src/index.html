@@ -14,24 +14,59 @@
 <body ng-app="App" ng-controller="RootController" class="theme-{{theme}}">
   $bundles
   <div class="app-container flex flex-column justify-center">
-    <header class="flex items-center">
+    <header class="flex items-center justify-between">
       <div>JSONFiddle</div>
+      <div>Settings</div>
     </header>
     <div class="toolbar flex items-center">
         <div class="text-btn" ng-click="formatJson()">Format JSON</div>
         <div>|</div>
+        <div>Format indentation: </div>
+        <input type="number" min="1" max="10" ng-model="settings.formatIndentation" />
+        <input type="text" ng-model="settings.filter" />
+
     </div>
     <main class="flex justify-between items-center">
-      <textarea id="textarea" json-text ng-model="json" spellcheck="false"></textarea>
+      <textarea id="textarea" json-text settings="settings" ng-model="json" spellcheck="false"></textarea>
       <div class="separator"></div>
       <div class="flex-auto output">
-        <property value="json"></property>
+        <property value="json" filter="settings.filter"></property>
       </div>
     </main>
     <footer class="flex items-center">
 
     </footer>
   </div>
+
+  <script type="text/ng-template" id="property.html">
+    <span class="property">
+      <span class="key" ng-if="key">{{key}}</span>
+      <span class="number" ng-show="isNumber()">{{value}}</span>
+      <span class="string" ng-show="isString()">{{value}}</span>
+      <span class="boolean" ng-show="isBoolean()">{{value}}</span>
+      <span class="null" ng-show="isNull()">null</span>
+      <span class="object" ng-class="{'collapsed': collapsed}" ng-if="isObject()">
+        <span class="toggle" ng-click="collapsed = !collapsed">{</span>
+        <ul>
+          <li ng-repeat="(k,v) in value" ng-if="getFilter(k,v)">
+            <property key="k" value="v" filter="getNextFilter(k, v)"></property>
+          </li>
+        </ul>
+        <span class="toggle-end">}</span>
+      </span>
+      <span class="array" ng-class="{'collapsed': collapsed}" ng-if="isArray()">
+        <span class="toggle" ng-click="collapsed = !collapsed">[
+        <span ng-if="collapsed">{{value.length}}</span>
+        </span>
+        <ul>
+          <li ng-repeat="(k,v) in value">
+            <property value="v" filter="filter"></property>
+          </li>
+        </ul>
+        <span class="toggle-end">]</span>
+      </span>
+    </span>
+  </script>
 </body>
 
 </html>

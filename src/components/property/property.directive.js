@@ -1,51 +1,52 @@
 import { isString, isNumber, isObject, isArray, isBoolean, isNull } from '../../util';
 export default function property() {
-    return {
-        scope: {
-            key: '=',
-            value: '='
-          },
-          restrict: 'E',
-          link: function(scope, el, attrs) {
-            scope.isString  = () => isString(scope.value);
-            scope.isNumber  = () => isNumber(scope.value);
-            scope.isObject  = () => isObject(scope.value);
-            scope.isArray   = () => isArray(scope.value);
-            scope.isBoolean = () => isBoolean(scope.value);
-            scope.isNull    = () => isNull(scope.value); 
-          },
-        template: `
-            <span class="property">
-              <span class="key" ng-if="key">{{key}}</span>
-              <span class="number" ng-if="isNumber()">{{value}}</span>
-              <span class="string" ng-if="isString()">{{value}}</span>
-              <span class="boolean" ng-if="isBoolean()">{{value}}</span>
-              <span class="null" ng-if="isNull()">null</span>
-              <span class="object" ng-class="{'collapsed': collapsed}" ng-if="isObject()">
-                <span class="toggle" ng-click="collapsed = !collapsed"></span>
-                <ul>
-                  <li ng-repeat="(k,v) in value">
-                    <property key="k" value="v"></property>
-                  </li>
-                </ul>
-                <span class="toggle-end"></span>
-              </span>
-              <span class="array" ng-class="{'collapsed': collapsed}" ng-if="isArray()">
-                <span class="toggle" ng-click="collapsed = !collapsed">
-                <span ng-if="collapsed">{{value.length}}</span>
-                </span>
-                <ul>
-                  <li ng-repeat="(k,v) in value">
-                    <property value="v"></property>
-                  </li>
-                </ul>
-                <span class="toggle-end"></span>
-              </span>
-            </span>
-          `,
-          replace: true,
-      }
-  };
+  return {
+      scope: {
+          key: '=',
+          value: '=',
+          filter: '='
+        },
+        restrict: 'E',
+        link: function(scope, el, attrs) {
+          scope.isString  = () => isString(scope.value);
+          scope.isNumber  = () => isNumber(scope.value);
+          scope.isObject  = () => isObject(scope.value);
+          scope.isArray   = () => isArray(scope.value);
+          scope.isBoolean = () => isBoolean(scope.value);
+          scope.isNull    = () => isNull(scope.value);
+
+          scope.ceaseFilter = false;
+          scope.getNextFilter = (key, value) => {
+            const { filter } = scope;
+            if (filter && filter.length > 0) {
+              var nextFilter = filter.replace(/(?:^| )([a-zA-Z0-9_]+[\.]?)/g, ' ').trim();
+              var r = new RegExp("(" + key + "\\.)([a-zA-Z0-9_.]+)", "g");
+              var m = filter.match(r);
+              if (!m)
+                return undefined;
+              m.forEach((s, i, a) => a[i] = s.substring(key.length + 1));
+              nextFilter = m.join(" ");
+              if (nextFilter.length == 0)
+                 return undefined;
+              return nextFilter;
+            }
+            else return undefined;  
+          };
+
+          scope.getFilter = (key, value) => {
+            const { filter } = scope;
+            var nextFilter = scope.getNextFilter(key, value);
+            if(!filter || filter.length <= 0 || filter.match(new RegExp("(?:^| )" + key + "(\\.|$| )"))) {
+              scope.ceaseFilter = nextFilter == undefined;
+              return true;
+            }
+            return false;
+          }
+        },
+        templateUrl: 'property.html',
+        replace: true,
+    }
+};
   
   
   
