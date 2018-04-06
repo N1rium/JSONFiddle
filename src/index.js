@@ -5,7 +5,6 @@ import rootCtrl from './components/root/root.ctrl';
 import rootConfig from './components/root/root.config';
 
 import propertyDirective from './components/property/property.directive';
-import propertyFilter from './components/property/property.filter';
 import jsonTextDirective from './components/json-text/jsontext.directive';
 
 angular.module('App', [])
