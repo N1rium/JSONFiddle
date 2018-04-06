@@ -13,4 +13,3 @@ angular.module('App', [])
   .controller('RootController', rootCtrl)
   .directive('property', propertyDirective)
   .directive('jsonText', jsonTextDirective)
-  .filter('propertyFilter', propertyFilter);
