@@ -8,6 +8,11 @@ export default function rootCtrl($scope, $rootScope) {
     "a": "b"
   };
 
+  $scope.settings = {
+    formatIndentation: 2,
+    filter: ''
+  }
+
   $scope.formatJson = function() {
     $rootScope.$broadcast('jsonFormatEvent');
   }
@@ -15,6 +20,10 @@ export default function rootCtrl($scope, $rootScope) {
   $scope.focusTextarea = function() {
     document.getElementById('textarea').focus();
   }
+
+  $scope.$watch('settings.formatIndentation', function() {
+    $scope.formatJson();
+  });
 
   function init() {
     $scope.focusTextarea();
