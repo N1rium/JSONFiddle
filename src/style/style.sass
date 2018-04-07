@@ -51,15 +51,19 @@ main .output > div:last-child
 
 main .input
   resize: horizontal
-  overflow: auto
+  overflow: hidden
   position: relative
   &:after
     content: ""
     position: absolute
-    bottom: -8px
-    right: -8px
+    bottom: -10px
+    right: -10px
     min-width: 1px
     min-height: 1px
+    background: rgba(0, 0, 0, 0.45)
+    height: 20px
+    width: 20px
+    transform: rotate(45deg)
 
 textarea
   resize: none
