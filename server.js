@@ -11,5 +11,4 @@ app.get('*',function (req, res) {
 });
 
 const port = process.env.PORT || 3000;
-process.env.GA_KEY && console.log(`Analytics key ${process.env.GA_KEY} found!`)
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
