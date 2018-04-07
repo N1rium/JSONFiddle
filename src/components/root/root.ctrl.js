@@ -5,7 +5,9 @@ export default function rootCtrl($scope, $rootScope) {
   $scope.theme = themes[0];
 
   $scope.json = {
-    "a": "b"
+    "user": {
+      "name": "Gordon Freeman"
+    }
   };
 
   $scope.settings = {
