@@ -1,9 +1,8 @@
-export default function rootCtrl($scope, $rootScope) {
+export default function rootCtrl($scope, $rootScope, Analytics) {
   'ngInject';
 
   const themes = ['json-parser-fr']
   $scope.theme = themes[0];
-
   $scope.json = {
     "user": {
       "name": "Gordon Freeman"
@@ -31,5 +30,6 @@ export default function rootCtrl($scope, $rootScope) {
     $scope.focusTextarea();
   }
 
+  Analytics.trackPage('/');
   init();
 }

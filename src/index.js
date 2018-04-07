@@ -7,8 +7,10 @@ import rootConfig from './components/root/root.config';
 import propertyDirective from './components/property/property.directive';
 import jsonTextDirective from './components/json-text/jsontext.directive';
 
-angular.module('App', [])
-  //.config(rootConfig)
+import ga from 'angular-google-analytics';
+
+angular.module('App', ['angular-google-analytics'])
+  .config(rootConfig)
   .controller('RootController', rootCtrl)
   .directive('property', propertyDirective)
   .directive('jsonText', jsonTextDirective)
