@@ -1,4 +1,4 @@
-import { isString, isNumber, isObject, isArray, isBoolean, isNull } from '../../util';
+import { isString, isNumber, isObject, isArray, isBoolean, isNull, getObjectLength } from '../../util';
 export default function property() {
   return {
       scope: {
@@ -32,6 +32,10 @@ export default function property() {
             }
             else return undefined;  
           };
+
+          scope.getObjectLength = function(obj) {
+            return getObjectLength(obj);
+          }
 
           scope.getFilter = (key, value) => {
             const { filter } = scope;

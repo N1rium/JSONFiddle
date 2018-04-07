@@ -50,7 +50,9 @@
       <span class="boolean" ng-show="isBoolean()">{{value}}</span>
       <span class="null" ng-show="isNull()">null</span>
       <span class="object" ng-class="{'collapsed': collapsed}" ng-if="isObject()">
-        <span class="toggle" ng-click="collapsed = !collapsed">{</span>
+        <span class="toggle" ng-click="collapsed = !collapsed">{
+          <span ng-if="collapsed">{{getObjectLength(value)}}</span>
+        </span>
         <ul>
           <li ng-repeat="(k,v) in value" ng-if="getFilter(k,v)">
             <property key="k" value="v" filter="getNextFilter(k, v)"></property>
