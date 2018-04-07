@@ -18,14 +18,14 @@
       <div>JSONFiddle</div>
     </header>
     <main class="flex justify-between">
-      <div class="flex-auto input flex flex-column">
+      <div class="input flex flex-column">
         <div class="p1 tbar flex items-center">
           <div class="text-btn" ng-click="formatJson()">Format JSON</div>
           <div>|</div>
           <div>Indentation: </div>
           <input class="ml1" type="number" min="1" max="10" ng-model="settings.formatIndentation" />
         </div>
-        <textarea id="textarea" class="p2 h100" json-text settings="settings" ng-model="json" spellcheck="false"></textarea>
+        <textarea id="textarea" class="p2 h100" json-text on-error="onError" settings="settings" ng-model="json" spellcheck="false"></textarea>
       </div>
       <div class="separator"></div>
       <div class="flex-auto output flex flex-column">

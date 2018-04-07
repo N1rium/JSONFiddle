@@ -49,6 +49,18 @@ main .separator
 main .output > div:last-child
   overflow-y: auto
 
+main .input
+  resize: horizontal
+  overflow: auto
+  position: relative
+  &:after
+    content: ""
+    position: absolute
+    bottom: -8px
+    right: -8px
+    min-width: 1px
+    min-height: 1px
+
 textarea
   resize: none
   font-family: $font-family-1
