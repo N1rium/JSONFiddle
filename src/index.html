@@ -58,7 +58,7 @@ $bundles
           <span ng-if="collapsed">{{getObjectLength(value)}}</span>
         </span>
         <ul>
-          <li ng-repeat="(k,v) in value" ng-if="getFilter(k,v)">
+          <li ng-repeat="(k,v) in value track by $index" ng-if="getFilter(k,v)">
             <property key="k" value="v" filter="getNextFilter(k, v)"></property>
           </li>
         </ul>
@@ -69,7 +69,7 @@ $bundles
         <span ng-if="collapsed">{{value.length}}</span>
         </span>
         <ul>
-          <li ng-repeat="(k,v) in value">
+          <li ng-repeat="(k,v) in value track by $index">
             <property value="v" filter="filter"></property>
           </li>
         </ul>
