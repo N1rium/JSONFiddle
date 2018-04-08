@@ -11,7 +11,8 @@ export default function rootCtrl($scope, $rootScope, Analytics) {
 
   $scope.settings = {
     formatIndentation: 2,
-    filter: ''
+    filter: '',
+    filterThrottle: 250
   }
 
   $scope.formatJson = function() {
