@@ -1,7 +1,7 @@
 export default function rootCtrl($scope, $rootScope, Analytics) {
   'ngInject';
 
-  const themes = ['json-parser-fr']
+  const themes = ['json-parser-fr'];
   $scope.theme = themes[0];
   $scope.json = {
     "user": {

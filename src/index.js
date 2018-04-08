@@ -6,6 +6,7 @@ import rootConfig from './components/root/root.config';
 
 import propertyDirective from './components/property/property.directive';
 import jsonTextDirective from './components/json-text/jsontext.directive';
+import byteCounterDirective from './components/byte-counter/bytecounter.directive';
 
 import ga from 'angular-google-analytics';
 
@@ -14,3 +15,4 @@ angular.module('App', ['angular-google-analytics'])
   .controller('RootController', rootCtrl)
   .directive('property', propertyDirective)
   .directive('jsonText', jsonTextDirective)
+  .directive('byteCounter', byteCounterDirective)
