@@ -1,4 +1,4 @@
-export default function rootCtrl($scope, $rootScope, Analytics) {
+export default function rootCtrl($scope, $rootScope, Analytics, $timeout) {
   'ngInject';
 
   const themes = ['json-parser-fr'];
@@ -20,7 +20,10 @@ export default function rootCtrl($scope, $rootScope, Analytics) {
   }
 
   $scope.focusTextarea = function() {
-    document.getElementById('textarea').focus();
+    $timeout(() => {
+      document.getElementById('textarea').focus();
+      document.getElementById('textarea').select();
+    }, 0);
   }
 
   $scope.$watch('settings.formatIndentation', function() {
