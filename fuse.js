@@ -8,8 +8,8 @@ Sparky.task('copy-assets', () => Sparky.src("assets/**/**.*", { base: './src' })
 Sparky.task('dev', dev);
 Sparky.task('production', prod);
 
-function dev() {
-  const fuse = FuseBox.init({
+function init(isProd) {
+  return FuseBox.init({
     homeDir: "src",
     output: "build/$name.js",
     plugins: [
@@ -27,59 +27,36 @@ function dev() {
       WebIndexPlugin({ template: 'src/index.html' })
     ]
   });
-  
+}
+
+function dev() {
+  const fuse = init(false);
   fuse.dev();
-  
   fuse.bundle("app")
     .watch()
     .instructions("> index.js")
     .hmr();
-  
   Sparky.task("clean", () => {
     return Sparky.src("build").clean("build");
   });
-  
   Sparky.task("watch:images", () => {
     return Sparky.watch("**/*.+(svg|png|jpg|gif)", {base: "./src"})
       .dest("./build");
   });
-  
   fuse.run();
 }
 
-
-
 function prod() {
-  const fuse = FuseBox.init({
-    homeDir: "src",
-    output: "build/$name.js",
-    plugins: [
-      BabelPlugin({
-        config: {
-          sourceMaps: true,
-          presets: ["es2015"],
-          plugins: [
-
-          ],
-        },
-      }),
-      [SassPlugin(), CSSPlugin()],
-      CSSPlugin(),
-      WebIndexPlugin({ template: 'src/index.html' })
-    ]
-  });
-  
+  const fuse = init(true);
   fuse.bundle("app")
     .instructions("> index.js")
-  
+    .hmr();
   Sparky.task("clean", () => {
     return Sparky.src("build").clean("build");
   });
-  
   Sparky.task("watch:images", () => {
     return Sparky.watch("**/*.+(svg|png|jpg|gif)", {base: "./src"})
       .dest("./build");
   });
-  
   fuse.run();
 }

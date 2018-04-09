@@ -4,7 +4,7 @@
   "description": "JSON fiddle / collaboration / editor",
   "main": "index.js",
   "scripts": {
-    "start": "node fuse production && node server.js",
+    "start": "node fuse && node fuse production && node server.js",
     "dev": "node fuse",
     "test": "test"
   },
