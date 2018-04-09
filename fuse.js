@@ -50,7 +50,6 @@ function prod() {
   const fuse = init(true);
   fuse.bundle("app")
     .instructions("> index.js")
-    .hmr();
   Sparky.task("clean", () => {
     return Sparky.src("build").clean("build");
   });
