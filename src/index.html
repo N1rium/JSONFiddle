@@ -62,7 +62,8 @@ $bundles
       <div class="separator"></div>
       <div class="flex-auto output flex flex-column">
         <div class="p1 tbar flex justify-end items-center">
-          <input type="text" ng-model="settings.filter" 
+          <input type="text" ng-model="settings.filter"
+            ng-change="onFilterChanged()"
             ng-model-options="{ debounce: settings.filterThrottle }" 
             ng-change="onFilterChanged()" 
             placeholder="filter: e.g user.name" />
