@@ -27,12 +27,12 @@ export default function rootCtrl($scope, $rootScope, Analytics, $timeout) {
   }
 
   $scope.onFilterChanged = function() {
-    $scope.settings.filter.length > 0 && Analytics.trackEvent('input', 'settings', 'filter', $scope.settings.filter);
+    $scope.settings.filter.length > 0 && Analytics.trackEvent('settings', 'filter', $scope.settings.filter);
   }
 
   $scope.$watch('settings.formatIndentation', function() {
     $scope.formatJson();
-    Analytics.trackEvent('input', 'settings', 'indentation', $scope.settings.formatIndentation);
+    Analytics.trackEvent('settings', 'indentation', $scope.settings.formatIndentation);
   });
 
   function init() {
