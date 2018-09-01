@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const jsonSchema = require('../../../json-schema');
 const json = mongoose.model('JSON', jsonSchema);
+const shortid = require('shortid');
 
 module.exports = {
   get(id) {
@@ -12,8 +13,18 @@ module.exports = {
     });
   },
 
+  update(id, data) {
+    return new Promise((res, rej) => {
+      json.findOneAndUpdate({ id }, { data }, { new: true }, (err, resp) => {
+        if (err) rej(err);
+        console.log(resp);
+        res(resp);
+      });
+    });
+  },
+
   create(data) {
-    const obj = new json({ id: new Date().getTime(), data });
+    const obj = new json({ id: shortid.generate(), data });
     return new Promise((res, rej) => {
       obj.save((err, resp) => {
         if (err) rej(err);

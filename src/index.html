@@ -1,11 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="">
+
 <head>
+  <base href="/">
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>JSON Fiddle - parse, format & inspect json</title>
   <meta name="description" content="Parse, format, filter & inspect json with this online editor">
-  <meta name="keywords" content="JSON, json, online, editor, filter, inspect, fiddle, parse, parser, pretty, print, pretty print, format, formatter, object, key, val, value, byte"/>
+  <meta name="keywords" content="JSON, json, online, editor, filter, inspect, fiddle, parse, parser, pretty, print, pretty print, format, formatter, object, key, val, value, byte"
+  />
   <meta name="author" content="Johnny Blomgren, Tommy Wallberg" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -28,21 +31,28 @@
   <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
   <link rel="manifest" href="/assets/favicons/manifest.json">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
   <!--<link rel="canonical" href="https://jsonfiddle.herokuapp.com"> Use this if hosting elsewhere -->
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 </head>
 $bundles
+
 <body ng-app="App" ng-controller="RootController" class="theme-{{theme}}">
   <div class="app-container flex flex-column justify-center">
     <header class="flex items-center justify-between">
       <div>JSONFiddle</div>
+      <button ng-click="save()">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span>{{saveBtnText}}</span>
+      </button>
     </header>
     <main class="flex justify-between">
       <div id="input" class="input flex flex-column">
@@ -62,11 +72,8 @@ $bundles
       <div class="separator"></div>
       <div class="flex-auto output flex flex-column">
         <div class="p1 tbar flex justify-end items-center">
-          <input type="text" ng-model="settings.filter"
-            ng-change="onFilterChanged()"
-            ng-model-options="{ debounce: settings.filterThrottle }" 
-            ng-change="onFilterChanged()" 
-            placeholder="filter: e.g user.name" />
+          <input type="text" ng-model="settings.filter" ng-change="onFilterChanged()" ng-model-options="{ debounce: settings.filterThrottle }"
+            ng-change="onFilterChanged()" placeholder="filter: e.g user.name" />
         </div>
         <div class="p2">
           <property value="json" filter="settings.filter"></property>
