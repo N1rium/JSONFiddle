@@ -35,7 +35,6 @@ function dev() {
   fuse.bundle("app")
     .watch()
     .instructions("> index.js")
-    .hmr();
   Sparky.task("clean", () => {
     return Sparky.src("build").clean("build");
   });
